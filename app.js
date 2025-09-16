@@ -20,7 +20,7 @@ const express = require('express');
 const path = require('path');
 const { searchMovies } = require('./utils/movieSearch');
 const { similarMovies } = require('./utils/similarMovies');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+// require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const PORT = process.env.PORT || 3000;
 
@@ -34,9 +34,9 @@ const apiKey = process.env.API_KEY
 
 
 
-app.get('/', (_, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// app.get('/', (_, res) => {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 
 // search for the movie title -- (q = query)
 app.get('/api/search', async(req, res) => {
