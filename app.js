@@ -1,17 +1,3 @@
-// // Declarations, packages and paths
-// const express = require('express');
-// const path = require('path');
-// // require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
-// const dotenv = require("dotenv");
-// dotenv.config();
-
-// const { searchMovies } = require('./utils/movieSearch');
-// const { similarMovies } = require('./utils/similarMovies');
-
-// const app = express();
-// const PORT = process.env.PORT || 3000;
-
-
 // Load environment variables first
 require('dotenv').config();
 
@@ -20,17 +6,11 @@ const express = require('express');
 const path = require('path');
 const { searchMovies } = require('./utils/movieSearch');
 const { similarMovies } = require('./utils/similarMovies');
-// require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
-
-const TMDB = "https://api.themoviedb.org/3";
-const apiKey = process.env.API_KEY
-
-// app.use(express.static(path.join(__dirname, 'public')));
 
 
 
@@ -39,7 +19,7 @@ const apiKey = process.env.API_KEY
 // });
 
 // search for the movie title -- (q = query)
-app.get('/api/search', async(req, res) => {
+app.get('/api/search', (req, res) => {
   const q = (req.query.query || '').trim();
   if (!q) return res.status(400).json({ error: 'Please enter a movie title into the field' });
 
@@ -52,7 +32,6 @@ app.get('/api/search', async(req, res) => {
 // return the similar movies 
 app.get('/api/movies/:id/similar', (req, res) => {
   const id = req.params.id;
-
   similarMovies(id, (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(results);
@@ -74,11 +53,10 @@ app.get('/api/similar-by-title', (req, res) => {
       res.json({ searched: first, similar: sim });
     });
   });
-
-  
-  // Allows the server to run on whatever PORT has been designated if other than 3000 (locally)
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 });
+
+// Allows the server to run on whatever PORT has been designated if other than 3000 (locally)
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
 
 
