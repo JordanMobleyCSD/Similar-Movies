@@ -6,7 +6,7 @@ document.getElementById('searchBtn').addEventListener('click', async () => {
   resultsDiv.innerHTML = "<p>Loading...</p>";
 
   try {
-    const res = await fetch(`/api/similar-by-title?q=${encodeURIComponent(query)}`);
+    const res = await fetch(`/api/similar-by-title?query=${encodeURIComponent(query)}`);
     const data = await res.json();
 
     resultsDiv.innerHTML = ""; 

@@ -3,7 +3,7 @@ const request = require('postman-request');
 const path = require('path');
 // require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
-const TMDB = 'https://api.themoviedb.org/3/search/movie';
+const TMDB = 'https://api.themoviedb.org/3';
 const apiKey = process.env.API_KEY;
 
 function searchMovies(query, callback) {
